@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#toolbar {
+    position: fixed;
+    top: 0;
+    background-color: #2f2f2f;
+    color: white;
+    font: bold 15px tahoma;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#radiusbar {
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.increment-decrement,
+#radiusvalue,
+#savebtn {
+    padding: 8px 10px;
+    border-radius: 50%;
+    margin-left: 10px;
+    box-shadow: #df36ee 5px 5px 10px inset, #1e81b0 -5px -5px 10px inset;
+}
+
+.increment-decrement:hover,
+#savebtn:hover {
+    cursor: pointer;
+    box-shadow: #df36ee 5px 5px 10px inset, #1e81b0 -5px -5px 10px inset;
+}
+
+#savebar {
+    width: 200px;
+    margin-left: 30px;
+}
+
+#savebtn {
+    margin-left: 25px;
+}
+
+#colorbar {
+    width: 600px;
+    margin-left: 50px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.colors {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.active {
+    border: 1px solid white;
+}
