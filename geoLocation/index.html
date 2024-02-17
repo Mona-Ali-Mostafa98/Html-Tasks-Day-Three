@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Map and Detailed Information</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="mainSection">
+      <section id="topSection">
+        <button class="button" id="displayMapBtn">Display Map</button>
+        <button class="button" id="detailedInfoBtn">
+          Detailed Information
+        </button>
+      </section>
+      <section id="bottomSection">
+        <table class="details" id="details">
+          <tr>
+            <td>Latitude: </td>
+            <td><span id="latitude"></span></td>
+          </tr>
+          <tr>
+            <td>Longitude: </td>
+            <td><span id="longitude"></span></td>
+          </tr>
+          <tr>
+            <td>Accuracy: </td>
+            <td><span id="accuracy"></span></td>
+          </tr>
+          <tr>
+            <td>Timestamp: </td>
+            <td><span id="timestamp"></span></td>
+          </tr>
+        </table>
+        <div class="map-container" id="mapContainer">
+          <div id="map"></div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Function to handle detailedInfoBtn click event
+      function handleDetailedInfoBtnClick() {
+        var detailsElement = document.getElementById("details");
+        var mapContainerElement = document.getElementById("mapContainer");
+
+        // Add 'active' class to details element
+        detailsElement.classList.add("active");
+
+        // Hide the mapContainer element
+        mapContainerElement.style.display = "none";
+
+        // Retrieve and update geolocation information
+        navigator.geolocation.getCurrentPosition(updateGeolocationDetails);
+      }
+
+      // Function to handle displayMapBtn click event
+      function handleDisplayMapBtnClick() {
+        var detailsElement = document.getElementById("details");
+        var mapContainerElement = document.getElementById("mapContainer");
+
+        // Remove 'active' class from details element
+        detailsElement.classList.remove("active");
+
+        // Display the mapContainer element
+        mapContainerElement.style.display = "block";
+
+        // Display map
+        displayMap();
+      }
+
+      // Function to handle details element click event
+      function handleDetailsElementClick() {
+        this.classList.toggle("expanded");
+      }
+
+      // Function to update geolocation details in the DOM
+      function updateGeolocationDetails(position) {
+        var latitudeElement = document.getElementById("latitude");
+        var longitudeElement = document.getElementById("longitude");
+        var accuracyElement = document.getElementById("accuracy");
+        var timestampElement = document.getElementById("timestamp");
+
+        // Extract geolocation information
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var accuracy = position.coords.accuracy;
+        var timestamp = new Date(position.timestamp).toLocaleString();
+
+        // Update DOM elements with geolocation details
+        latitudeElement.textContent = latitude;
+        longitudeElement.textContent = longitude;
+        accuracyElement.textContent = accuracy + " meters";
+        timestampElement.textContent = timestamp;
+      }
+
+      // Function to display the map
+      function displayMap() {
+        // Retrieve geolocation information
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+
+          // Create map centered at user's location
+          var map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: latitude, lng: longitude },
+            zoom: 15,
+          });
+
+          // Add marker to user's location
+          var marker = new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            map: map,
+            title: "Your Location",
+          });
+        });
+      }
+
+      // Add event listeners
+      document
+        .getElementById("detailedInfoBtn")
+        .addEventListener("click", handleDetailedInfoBtnClick);
+      document
+        .getElementById("displayMapBtn")
+        .addEventListener("click", handleDisplayMapBtnClick);
+      document
+        .getElementById("details")
+        .addEventListener("click", handleDetailsElementClick);
+    </script>
+    <!-- Include the Google Maps JavaScript API -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB90FxtYG_ybAYXGkz0ybkmkboE2nEbezI"
+    ></script>
+  </body>
+</html>

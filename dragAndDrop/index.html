@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainSection">
+        <section id="topSection">
+            <img class="image" src="images/1.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/2.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/3.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/4.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/5.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/6.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/7.jpg" alt="" draggable="true" ondragstart="drag(event)">
+            <img class="image" src="images/8.jpg" alt="" draggable="true" ondragstart="drag(event)">
+        </section>
+        <section id="bottomSection"></section>
+    </div>
+
+    <script>
+        let bottomSection = document.getElementById('bottomSection');
+
+        function drag(event) {
+            event.dataTransfer.setData("draggedImg", event.target.src);
+        }
+
+        bottomSection.addEventListener('dragover', function(event) {
+            event.preventDefault();
+        });
+
+        bottomSection.addEventListener('drop', function(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("draggedImg");
+
+            
+            var draggedImage = new Image();
+            draggedImage.src = data;
+            draggedImage.classList.add('image');
+            draggedImage.setAttribute('draggable', true);
+            draggedImage.setAttribute('ondragstart', 'drag(event)');
+
+            
+            bottomSection.appendChild(draggedImage);
+
+            
+            if (bottomSection.textContent.trim() === "Empty") {
+                bottomSection.textContent = "";
+            }
+
+            
+            var topSection = document.getElementById('topSection');
+            var allImages = topSection.querySelectorAll('.image');
+            for (var i = 0; i < allImages.length; i++) {
+                if (allImages[i].src === data) {
+                    topSection.removeChild(allImages[i]);
+                    break;
+                }
+            }
+
+            
+            if (topSection.children.length === 0) {
+                topSection.style.height="10vh"
+                topSection.textContent = "Empty";
+                topSection.style.color = "white";
+                topSection.style.fontWeight = "bold";
+                topSection.style.fontSize = "30px";
+                topSection.style.backgroundColor ="rgb(188, 119, 253)";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(201, 209, 252);
+    background: radial-gradient(circle,
+            rgb(201, 172, 255) 0%,
+            rgb(255, 188, 249) 100%);
+}
+
+.mainSection {
+    width: 90vw;
+    height: 80vh;
+    text-align: center;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px #df36ee, 10px 10px 30px #1e81b0 inset,
+        -10px -10px 30px #df36ee, -10px -10px 30px #1e81b0 inset;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    margin: 10vh auto;
+}
+
+.mainSection {
+    width: 90vw;
+    height: 80vh;
+    text-align: center;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px #df36ee, 10px 10px 30px #1e81b0 inset,
+        -10px -10px 30px #df36ee, -10px -10px 30px #1e81b0 inset;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    margin: 10vh auto;
+}
+
+#topSection {
+    height: 15vh;
+}
+
+#bottomSection,
+#details {
+    height: 50vh;
+}
+
+#topSection,
+#bottomSection {
+    width: 80vw;
+    text-align: center;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    box-shadow: 5px 5px 30px #e28743 inset, -10px -10px 30px #e28743 inset;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#bottomSection:hover {
+    background-color: rgb(188, 119, 253);
+}
+
+.button {
+    width: 20vw;
+    color: white;
+    background-color: blueviolet;
+    border: 2px solid #1e81b0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: auto;
+    padding: 20px;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+.map-container {
+    height: 50vh;
+    width: 80vw;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.details {
+    display: none;
+}
+
+.details.active {
+    display: block;
+    border-radius: 5%;
+    width: 80vw;
+    text-align: center;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    box-shadow: 5px 5px 30px #e28743 inset, -10px -10px 30px #e28743 inset;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    line-height: 50px;
+}
+
+#latitude,
+#longitude,
+#accuracy,
+#timestamp {
+    text-align: center;
+    display: block;
+    text-align: center;
+    margin: auto;
+    font-size: large;
+}
+
+.details>div {
+    text-align: center;
+}
+
+.details.expanded {
+    background-color: rgba(81, 81, 216, 0.723);
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}

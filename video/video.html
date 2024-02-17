@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="mainSection">
+        <div id="leftSection">
+            <!-- Sample videos, replace with your video URLs -->
+            <div class="video-item selected" onclick="changePlayedVideo('videos/video1.mp4', this)">Video 1</div>
+            <div class="video-item" onclick="changePlayedVideo('videos/video2.mp4', this)">Video 2</div>
+            <div class="video-item" onclick="changePlayedVideo('videos/video3.mp4', this)">Video 3</div>
+            <div class="video-item" onclick="changePlayedVideo('videos/video4.mp4', this)">Video 4</div>
+            <div class="video-item" onclick="changePlayedVideo('videos/video5.mp4', this)">Video 5</div>
+            <div class="video-item" onclick="changePlayedVideo('videos/video6.mp4', this)">Video 6</div>
+        </div>
+
+        <div id="rightSection">
+            <video id="videoPlayer" src="videos/video1.mp4" ondblclick="fullScreenMode()" onclick="playOrPause()" muted autoplay></video>
+        </div>
+    </section>
+
+    <script>
+        function changePlayedVideo(videoUrl, element) {
+            let videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoUrl;
+            videoPlayer.play();
+
+            let videoItems = document.querySelectorAll('.video-item');
+            videoItems.forEach(item => item.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            let videoItems = document.querySelectorAll('.video-item');
+            let currentIndex = Array.from(videoItems).findIndex(item => item.classList.contains('selected'));
+
+            if (event.key === 'ArrowUp' && currentIndex > 0) {
+                changePlayedVideo(videoItems[currentIndex - 1].getAttribute('onclick').split("'")[1], videoItems[currentIndex - 1]);
+            } else if (event.key === 'ArrowDown' && currentIndex < videoItems.length - 1) {
+                changePlayedVideo(videoItems[currentIndex + 1].getAttribute('onclick').split("'")[1], videoItems[currentIndex + 1]);
+            }
+        });
+
+        function fullScreenMode() {
+            let videoPlayer = document.getElementById('videoPlayer');
+            if (!document.fullscreenElement && !document.mozFullScreenElement &&
+                !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen if not in fullscreen mode
+                if (videoPlayer.requestFullscreen) {
+                    videoPlayer.requestFullscreen();
+                } else if (videoPlayer.mozRequestFullScreen) {
+                    videoPlayer.mozRequestFullScreen();
+                } else if (videoPlayer.webkitRequestFullscreen) {
+                    videoPlayer.webkitRequestFullscreen();
+                } else if (videoPlayer.msRequestFullscreen) {
+                    videoPlayer.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen if already in fullscreen mode
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function playOrPause() {
+            let videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer.paused) {
+                videoPlayer.muted = false;
+                videoPlayer.play();
+            } else {
+                videoPlayer.muted = true;
+                videoPlayer.pause();
+            }
+        }
+    </script>
+</body>
+</html>

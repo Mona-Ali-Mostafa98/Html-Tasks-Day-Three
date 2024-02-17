@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul>li {
+    list-style: none;
+    cursor: pointer;
+}
+
+nav ul>li {
+    padding: 10px;
+    margin: 10px;
+}
+
+ul>li>a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+ul>li:hover {
+    color: #575757;
+    background-color: #b78951;
+    border-radius: 5px;
+}
+
+.mainSection {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rightSection ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 80vw;
+    height: 10vh;
+    background-color: #e7da8e;
+}
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(3, 1fr);
+    width: 80vw;
+    height: 80vh;
+}
+
+.images img {
+    width: 20vw;
+    height: 30vh;
+
+}
+
+.images img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 2s;
+}
+
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /*align-items: center;*/
+    width: 20vw;
+    height: 100vh;
+    padding: 10px;
+}
+
+.leftSection img {
+    width: 15vw;
+    height: 20vh;
+}
+
+.flickerSection {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, 1fr);
+    width: 20vw;
+    height: 20vh;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+}
+
+h2,
+i,
+li {
+    color: #515354;
+    font-size: 20px;
+    margin: 3px;
+    padding: 5px;
+}
+
+.aboutDiv p {
+    color: #515354;
+    font-size: 15px;
+}
+
+.flickerSection img {
+    width: 5vw;
+    height: 8vh;
+}
+
+i:hover {
+    color: white;
+    background-color: #b78951;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media all and (orientation:portrait) {
+    .images {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(6, 1fr);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .images img {
+        width: 50vw;
+        height: 30vh;
+
+    }
+
+    .rightSection ul {
+        width: 100vw;
+    }
+
+    .leftSection {
+        display: none;
+    }
+
+    nav ul>li {
+        padding: 5px;
+        margin: 5px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 700px) {
+    .images {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(6, 1fr);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .images img {
+        width: 50vw;
+        height: 30vh;
+
+    }
+
+    .rightSection ul {
+        width: 100vw;
+    }
+
+    .leftSection {
+        display: none;
+    }
+
+    nav ul>li {
+        padding: 5px;
+        margin: 5px;
+    }
+}
